@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from api import customer, items, sites
+from api import customer, items, json, sites
 
 app = FastAPI()
 
@@ -22,6 +22,7 @@ app.add_middleware(
 # app.include_router(items.router)
 # app.include_router(customer.router)
 app.include_router(sites.router)
+app.include_router(json.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)

@@ -1,6 +1,6 @@
 # models.py
 
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import JSON, Column, Integer, String
 from database.database import Base, engine
 
 class Item(Base):
@@ -35,6 +35,15 @@ class Site(Base):
     site_tag = Column(String(length=50))
     time_zone = Column(String(length=50))
     license_shared = Column(String(length=50))
+    
+
+
+class DataItem(Base):
+    __tablename__ = 'data_items'
+
+    id = Column(Integer, primary_key=True, index=True)
+    key = Column(String, index=True)
+    value = Column(JSON)
 
 
 Base.metadata.create_all(bind=engine)
